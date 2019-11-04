@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>R Initiation Course</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Víctor Granda (@MalditoBarbudo)" />
+    <meta name="date" content="2019-11-04" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+    <link rel="stylesheet" href="custom-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R Initiation Course
+### Víctor Granda (<span class="citation">@MalditoBarbudo</span>)
+### 2019-11-04
+
+---
+
+
+
+
+# Basic Use
+
+## Console
+
+You can use R as a simple calculator:
+
+
+```r
+3 + 5
+```
+
+```
+## [1] 8
+```
+
+```r
+2^3
+```
+
+```
+## [1] 8
+```
+
+```r
+sin(pi/2)
+```
+
+```
+## [1] 1
+```
+
+```r
+x &lt;- 5
+3 + x
+```
+
+```
+## [1] 8
+```
+
+---
+
+# Basic Use
+
+## Console
+
+Look at we have here:
+
+
+```r
+x &lt;- 5
+x
+```
+
+```
+## [1] 5
+```
+
+No we have an object where we store a numeric value (5). We can use it
+
+
+```r
+3 + x
+```
+
+```
+## [1] 8
+```
+
+```r
+y &lt;- 3 + x
+y
+```
+
+```
+## [1] 8
+```
+
+---
+
+# Basic use
+
+## Names
+
+
+```r
+x &lt;- 5
+really_long_name &lt;- 2.9
+```
+
+We can use the `Tab` key to access quickly the names of the objects
+
+  - Avoid sort and conflicting names
+  - Nowadays there is no restrictions about names length, and the *future you*
+    will be grateful for **long and descriptive names**  
+    &gt; `mixed_model_var1_res` better than `mmV1r`
+  - Use key shortcuts (`Tab` key), they will save you time and, more importantly,
+    save you from spelling errors!!
+
+
+---
+
+# Basic Use
+
+## Packages
+
+**Install once**
+
+
+```r
+# install once
+install.packages(tidyverse)
+```
+
+**Load always** (at the start of the session/script)
+
+
+```r
+# load always
+library(tidyverse)
+```
+
+```
+## ── Attaching packages ──────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+```
+
+```
+## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+## ✔ tidyr   0.8.3     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0
+```
+
+```
+## ── Conflicts ─────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter()  masks stats::filter()
+## ✖ purrr::is_null() masks testthat::is_null()
+## ✖ dplyr::lag()     masks stats::lag()
+## ✖ dplyr::matches() masks testthat::matches()
+```
+
+---
+
+# Basic Use
+
+## Functions
+
+
+```r
+sin(pi/2)
+```
+
+```
+## [1] 1
+```
+
+The structure is simple:
+
+
+```r
+function_name(arg1 = val1, arg2 = val2, ...)
+```
+
+And usually go like this:  
+`what(how1, how2, ...)`
+
+---
+
+# Basic Use
+
+## Functions
+
+Let's see an example with `seq` (making numeric **seq**uences)
+
+
+```r
+seq(1, 10)
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+You can see, we get a numeric sequence **from** 1 **to** 10. In fact, we can see the
+function help (`?seq`), and those are the names of the arguments.
+
+
+```r
+seq(from = 1, to = 10, by = 2)
+```
+
+```
+## [1] 1 3 5 7 9
+```
+
+```r
+seq(from = 1, to = 10, length.out = 5)
+```
+
+```
+## [1]  1.00  3.25  5.50  7.75 10.00
+```
+
+---
+
+# Basic Use
+
+## Objects
+
+
+```r
+index_hours &lt;- seq(1, 10)
+x
+```
+
+```
+## [1] 5
+```
+
+```r
+y
+```
+
+```
+## [1] 8
+```
+
+```r
+index_hours
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+We can also inspect which objects we have in the Rstudio panel
+
+---
+
+# Basic Use
+
+## Objects
+
+
+```r
+i_am_a_number &lt;- 25
+i_am_a_character &lt;- "Victor"
+i_am_a_numeric_vector &lt;- c(1,2,4,8,16)
+i_am_a_character_vector &lt;- c("Quercus", "Pinus", "Fagus", "Abies")
+i_am_a_list &lt;- list(
+  first = 25, second = "Víctor",
+  third = c(1,2,4,8,16), fourth = c("Quercus", "Pinus", "Fagus", "Abies")
+)
+i_am_the_same_list &lt;- list(
+  first = i_am_a_number, second = i_am_a_character,
+  third = i_am_a_numeric_vector, fourth = i_am_a_character_vector
+)
+```
+
+---
+
+# Basic Use
+
+## Objects
+
+Data frames are a kind of special object
+
+
+```r
+iris
+```
+
+```
+##     Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1            5.1         3.5          1.4         0.2     setosa
+## 2            4.9         3.0          1.4         0.2     setosa
+## 3            4.7         3.2          1.3         0.2     setosa
+## 4            4.6         3.1          1.5         0.2     setosa
+## 5            5.0         3.6          1.4         0.2     setosa
+## 6            5.4         3.9          1.7         0.4     setosa
+## 7            4.6         3.4          1.4         0.3     setosa
+## 8            5.0         3.4          1.5         0.2     setosa
+## 9            4.4         2.9          1.4         0.2     setosa
+## 10           4.9         3.1          1.5         0.1     setosa
+## 11           5.4         3.7          1.5         0.2     setosa
+## 12           4.8         3.4          1.6         0.2     setosa
+## 13           4.8         3.0          1.4         0.1     setosa
+## 14           4.3         3.0          1.1         0.1     setosa
+## 15           5.8         4.0          1.2         0.2     setosa
+## 16           5.7         4.4          1.5         0.4     setosa
+## 17           5.4         3.9          1.3         0.4     setosa
+## 18           5.1         3.5          1.4         0.3     setosa
+## 19           5.7         3.8          1.7         0.3     setosa
+## 20           5.1         3.8          1.5         0.3     setosa
+## 21           5.4         3.4          1.7         0.2     setosa
+## 22           5.1         3.7          1.5         0.4     setosa
+## 23           4.6         3.6          1.0         0.2     setosa
+## 24           5.1         3.3          1.7         0.5     setosa
+## 25           4.8         3.4          1.9         0.2     setosa
+## 26           5.0         3.0          1.6         0.2     setosa
+## 27           5.0         3.4          1.6         0.4     setosa
+## 28           5.2         3.5          1.5         0.2     setosa
+## 29           5.2         3.4          1.4         0.2     setosa
+## 30           4.7         3.2          1.6         0.2     setosa
+## 31           4.8         3.1          1.6         0.2     setosa
+## 32           5.4         3.4          1.5         0.4     setosa
+## 33           5.2         4.1          1.5         0.1     setosa
+## 34           5.5         4.2          1.4         0.2     setosa
+## 35           4.9         3.1          1.5         0.2     setosa
+## 36           5.0         3.2          1.2         0.2     setosa
+## 37           5.5         3.5          1.3         0.2     setosa
+## 38           4.9         3.6          1.4         0.1     setosa
+## 39           4.4         3.0          1.3         0.2     setosa
+## 40           5.1         3.4          1.5         0.2     setosa
+## 41           5.0         3.5          1.3         0.3     setosa
+## 42           4.5         2.3          1.3         0.3     setosa
+## 43           4.4         3.2          1.3         0.2     setosa
+## 44           5.0         3.5          1.6         0.6     setosa
+## 45           5.1         3.8          1.9         0.4     setosa
+## 46           4.8         3.0          1.4         0.3     setosa
+## 47           5.1         3.8          1.6         0.2     setosa
+## 48           4.6         3.2          1.4         0.2     setosa
+## 49           5.3         3.7          1.5         0.2     setosa
+## 50           5.0         3.3          1.4         0.2     setosa
+## 51           7.0         3.2          4.7         1.4 versicolor
+## 52           6.4         3.2          4.5         1.5 versicolor
+## 53           6.9         3.1          4.9         1.5 versicolor
+## 54           5.5         2.3          4.0         1.3 versicolor
+## 55           6.5         2.8          4.6         1.5 versicolor
+## 56           5.7         2.8          4.5         1.3 versicolor
+## 57           6.3         3.3          4.7         1.6 versicolor
+## 58           4.9         2.4          3.3         1.0 versicolor
+## 59           6.6         2.9          4.6         1.3 versicolor
+## 60           5.2         2.7          3.9         1.4 versicolor
+## 61           5.0         2.0          3.5         1.0 versicolor
+## 62           5.9         3.0          4.2         1.5 versicolor
+## 63           6.0         2.2          4.0         1.0 versicolor
+## 64           6.1         2.9          4.7         1.4 versicolor
+## 65           5.6         2.9          3.6         1.3 versicolor
+## 66           6.7         3.1          4.4         1.4 versicolor
+## 67           5.6         3.0          4.5         1.5 versicolor
+## 68           5.8         2.7          4.1         1.0 versicolor
+## 69           6.2         2.2          4.5         1.5 versicolor
+## 70           5.6         2.5          3.9         1.1 versicolor
+## 71           5.9         3.2          4.8         1.8 versicolor
+## 72           6.1         2.8          4.0         1.3 versicolor
+## 73           6.3         2.5          4.9         1.5 versicolor
+## 74           6.1         2.8          4.7         1.2 versicolor
+## 75           6.4         2.9          4.3         1.3 versicolor
+## 76           6.6         3.0          4.4         1.4 versicolor
+## 77           6.8         2.8          4.8         1.4 versicolor
+## 78           6.7         3.0          5.0         1.7 versicolor
+## 79           6.0         2.9          4.5         1.5 versicolor
+## 80           5.7         2.6          3.5         1.0 versicolor
+## 81           5.5         2.4          3.8         1.1 versicolor
+## 82           5.5         2.4          3.7         1.0 versicolor
+## 83           5.8         2.7          3.9         1.2 versicolor
+## 84           6.0         2.7          5.1         1.6 versicolor
+## 85           5.4         3.0          4.5         1.5 versicolor
+## 86           6.0         3.4          4.5         1.6 versicolor
+## 87           6.7         3.1          4.7         1.5 versicolor
+## 88           6.3         2.3          4.4         1.3 versicolor
+## 89           5.6         3.0          4.1         1.3 versicolor
+## 90           5.5         2.5          4.0         1.3 versicolor
+## 91           5.5         2.6          4.4         1.2 versicolor
+## 92           6.1         3.0          4.6         1.4 versicolor
+## 93           5.8         2.6          4.0         1.2 versicolor
+## 94           5.0         2.3          3.3         1.0 versicolor
+## 95           5.6         2.7          4.2         1.3 versicolor
+## 96           5.7         3.0          4.2         1.2 versicolor
+## 97           5.7         2.9          4.2         1.3 versicolor
+## 98           6.2         2.9          4.3         1.3 versicolor
+## 99           5.1         2.5          3.0         1.1 versicolor
+## 100          5.7         2.8          4.1         1.3 versicolor
+## 101          6.3         3.3          6.0         2.5  virginica
+## 102          5.8         2.7          5.1         1.9  virginica
+## 103          7.1         3.0          5.9         2.1  virginica
+## 104          6.3         2.9          5.6         1.8  virginica
+## 105          6.5         3.0          5.8         2.2  virginica
+## 106          7.6         3.0          6.6         2.1  virginica
+## 107          4.9         2.5          4.5         1.7  virginica
+## 108          7.3         2.9          6.3         1.8  virginica
+## 109          6.7         2.5          5.8         1.8  virginica
+## 110          7.2         3.6          6.1         2.5  virginica
+## 111          6.5         3.2          5.1         2.0  virginica
+## 112          6.4         2.7          5.3         1.9  virginica
+## 113          6.8         3.0          5.5         2.1  virginica
+## 114          5.7         2.5          5.0         2.0  virginica
+## 115          5.8         2.8          5.1         2.4  virginica
+## 116          6.4         3.2          5.3         2.3  virginica
+## 117          6.5         3.0          5.5         1.8  virginica
+## 118          7.7         3.8          6.7         2.2  virginica
+## 119          7.7         2.6          6.9         2.3  virginica
+## 120          6.0         2.2          5.0         1.5  virginica
+## 121          6.9         3.2          5.7         2.3  virginica
+## 122          5.6         2.8          4.9         2.0  virginica
+## 123          7.7         2.8          6.7         2.0  virginica
+## 124          6.3         2.7          4.9         1.8  virginica
+## 125          6.7         3.3          5.7         2.1  virginica
+## 126          7.2         3.2          6.0         1.8  virginica
+## 127          6.2         2.8          4.8         1.8  virginica
+## 128          6.1         3.0          4.9         1.8  virginica
+## 129          6.4         2.8          5.6         2.1  virginica
+## 130          7.2         3.0          5.8         1.6  virginica
+## 131          7.4         2.8          6.1         1.9  virginica
+## 132          7.9         3.8          6.4         2.0  virginica
+## 133          6.4         2.8          5.6         2.2  virginica
+## 134          6.3         2.8          5.1         1.5  virginica
+## 135          6.1         2.6          5.6         1.4  virginica
+## 136          7.7         3.0          6.1         2.3  virginica
+## 137          6.3         3.4          5.6         2.4  virginica
+## 138          6.4         3.1          5.5         1.8  virginica
+## 139          6.0         3.0          4.8         1.8  virginica
+## 140          6.9         3.1          5.4         2.1  virginica
+## 141          6.7         3.1          5.6         2.4  virginica
+## 142          6.9         3.1          5.1         2.3  virginica
+## 143          5.8         2.7          5.1         1.9  virginica
+## 144          6.8         3.2          5.9         2.3  virginica
+## 145          6.7         3.3          5.7         2.5  virginica
+## 146          6.7         3.0          5.2         2.3  virginica
+## 147          6.3         2.5          5.0         1.9  virginica
+## 148          6.5         3.0          5.2         2.0  virginica
+## 149          6.2         3.4          5.4         2.3  virginica
+## 150          5.9         3.0          5.1         1.8  virginica
+```
+
+---
+
+# Basic Use
+
+## Scripts
+
+Until now, we were using the console. It works nicely, no problem with that.
+But, what happens when you have to reproduce all the things you did?
+Console is a *quick and dirty* way of getting or visualizing some results.
+If you want time persistency, you must write your code in a text file, the R
+script.
+
+Let's create a script to generate some random data and save it as 'dummy_script.R'
+
+
+```r
+# lets create a data frame full of dummy data
+dummy_data &lt;- data.frame(
+  index = seq(1, 10),
+  factor = rep(c('a', 'b'), each = 5), # we use rep to avoid writing all the vector
+  height = rnorm(10, mean = 180, sd = 10), # rnorm creates normal distributions
+  weight = rnorm(10, mean = 75, sd = 7) # with the stated parameters
+)
+
+# Now we can see the data
+dummy_data
+
+# and plot it
+plot(dummy_data$height, dummy_data$weight)
+```
+
+---
+
+# Basic Use
+
+## Scripts
+
+RStudio offers tools and keyboard shortcuts to execute the scripts line by line,
+totally, or by selection.
+The allow to quickly inspect the code as you write.
+
+It also offers visual hints of possible spelling and syntactic errors:
+
+
+```r
+3 == NA
+
+x y &lt;- 2 + 3
+
+library(tidyverse
+```
+
+
+---
+# Loading data
+
+## `readr`
+
+The best way of loading text (txt, csv) data in R is the `readr` package
+
+
+```r
+library(readr)
+trees_data &lt;- read_csv('trees_Barcelona.csv')
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   Codi = col_character(),
+##   Provincia = col_character(),
+##   Cla = col_character(),
+##   Subclase = col_double(),
+##   Especie = col_character(),
+##   Rumbo = col_double(),
+##   Dist = col_double(),
+##   Fac = col_double(),
+##   CD = col_double(),
+##   DiamIf3 = col_double(),
+##   DiamIf2 = col_double(),
+##   HeiIf3 = col_double()
+## )
+```
+
+---
+# Loading data
+
+## `readr`
+
+We can also write
+
+
+```r
+write_csv(trees_data, 'new_trees_file.csv')
+```
+
+
+---
+
+# Loading data
+
+## Other sources
+
+`readxl` for reading from excel files
+`haven` for SPSS, Stata and SAS files
+
+
+---
+
+# Transforming data
+
+## The tidyverse
+
+The **tidyverse** is a collection of R packages designed for data science, as a suite aimed
+at easening the data analysis in all its steps.
+
+Created by Hadley Wickham, chief scientist of RStudio, and author of more than
+30 R packages (`readr`, `ggplot2`, `plyr`, `devtools`, `roxygen2`, `rmarkdown`...)
+
+All packages share an underlying design philosophy, grammar, and data structures. 
+
+&lt;img src="resources/images/tidyverse_schema_2.png" width="450" /&gt;
+
+---
+
+# So what's exactly *in* the tidyverse?
+
+.pull-extleft[![](resources/images/hex-tidyverse.png)]
+
+.pull-extleft_right[
+
+* `ggplot2` a system for creating graphics, based on the Grammar of Graphics
+
+* `readr` a fast and friendly way to read rectangular data (csv, txt...)
+
+* `tibble` a tibble is a re-imagining version of the data frame, keeping what time has proven to be effective and throwing out what has not
+
+* `stringr` provides a cohesive set of functions designed to make working with strings as easy as possible
+
+* `forcats` provides a suite of useful tools that solve common problems with factors
+
+* `dplyr` provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges
+ 
+* `tidyr` provides a set of functions that help you get to tidy data
+ 
+* `purrr` enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors
+]
+
+---
+layout: false
+class: inverse
+background-image: url(resources/images/dplyr.png)
+
+# dplyr
+
+---
+layout: true
+
+&lt;div class="tweaked-header" style="background-image: url(resources/images/dplyr.png)"&gt;&lt;/div&gt;
+---
+
+# 5 main verbs of dplyr
+
+  - `filter`: keep the rows that match a condition
+  
+  - `select`: keep columns by name
+  
+  - `arrange`: sort rows
+  
+  - `mutate`: transform existent variables or create new ones
+  
+  - `summarise`: do some summary statistics and reduce data
+
+---
+
+# common structure
+
+## (for most of the tidyverse)
+
+```r
+verb(data, ...)
+```
+
+- first argument: data (as data.frame or tbl_df)
+- the rest of arguments specify what to do with the data frame
+- output is always another data frame (tbl_df or data.frame)
+- unless we are assigning (`&lt;-`), never modifies the original data frame
+
+---
+
+.middle[.center[.font200[
+`filter`
+]]]
+
+
+
+.center[![](resources/images/filter.png)]
+
+---
+
+# Data
+
+Let's work with some data. `dplyr` comes with some example data to get the
+feeling:
+
+
+```r
+# install.packages(dplyr)
+# install.packages(babynames)
+library(dplyr)
+library(babynames)
+babynames
+```
+
+```
+## # A tibble: 1,924,665 x 5
+##     year sex   name          n   prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+##  1  1880 F     Mary       7065 0.0724
+##  2  1880 F     Anna       2604 0.0267
+##  3  1880 F     Emma       2003 0.0205
+##  4  1880 F     Elizabeth  1939 0.0199
+##  5  1880 F     Minnie     1746 0.0179
+##  6  1880 F     Margaret   1578 0.0162
+##  7  1880 F     Ida        1472 0.0151
+##  8  1880 F     Alice      1414 0.0145
+##  9  1880 F     Bertha     1320 0.0135
+## 10  1880 F     Sarah      1288 0.0132
+## # … with 1,924,655 more rows
+```
+
+
+---
+
+# Selecting rows (`filter`)
+
+
+```r
+filter(babynames, name == 'Alice')
+```
+
+```
+## # A tibble: 241 x 5
+##     year sex   name      n      prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;     &lt;dbl&gt;
+##  1  1880 F     Alice  1414 0.0145   
+##  2  1881 F     Alice  1308 0.0132   
+##  3  1881 M     Alice     7 0.0000646
+##  4  1882 F     Alice  1542 0.0133   
+##  5  1883 F     Alice  1488 0.0124   
+##  6  1883 M     Alice     6 0.0000533
+##  7  1884 F     Alice  1732 0.0126   
+##  8  1885 F     Alice  1681 0.0118   
+##  9  1885 M     Alice     9 0.0000776
+## 10  1886 F     Alice  1811 0.0118   
+## # … with 231 more rows
+```
+
+
+---
+
+# Selecting rows (`filter`)
+
+
+```r
+filter(babynames, year &gt; 2016)
+```
+
+```
+## # A tibble: 32,469 x 5
+##     year sex   name          n    prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt;
+##  1  2017 F     Emma      19738 0.0105 
+##  2  2017 F     Olivia    18632 0.00994
+##  3  2017 F     Ava       15902 0.00848
+##  4  2017 F     Isabella  15100 0.00805
+##  5  2017 F     Sophia    14831 0.00791
+##  6  2017 F     Mia       13437 0.00717
+##  7  2017 F     Charlotte 12893 0.00688
+##  8  2017 F     Amelia    11800 0.00629
+##  9  2017 F     Evelyn    10675 0.00569
+## 10  2017 F     Abigail   10551 0.00563
+## # … with 32,459 more rows
+```
+
+---
+
+# Selecting rows (`filter`)
+
+
+```r
+filter(babynames, name %in% c('Ada', 'Leon'))
+```
+
+```
+## # A tibble: 411 x 5
+##     year sex   name      n     prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;
+##  1  1880 F     Ada     652 0.00668 
+##  2  1880 M     Leon    118 0.000997
+##  3  1881 F     Ada     628 0.00635 
+##  4  1881 M     Leon    121 0.00112 
+##  5  1882 F     Ada     689 0.00596 
+##  6  1882 M     Leon    131 0.00107 
+##  7  1883 F     Ada     778 0.00648 
+##  8  1883 M     Leon    140 0.00124 
+##  9  1884 F     Ada     854 0.00621 
+## 10  1884 M     Leon    150 0.00122 
+## # … with 401 more rows
+```
+
+---
+
+# Selecting rows (`filter`)
+
+
+```r
+filter(
+  babynames,
+  sex == 'F',
+  prop &gt; 0.07
+)
+```
+
+```
+## # A tibble: 2 x 5
+##    year sex   name      n   prop
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;
+## 1  1880 F     Mary   7065 0.0724
+## 2  1882 F     Mary   8148 0.0704
+```
+
+---
+
+# Selecting rows (`filter`)
+
+![](resources/images/logical_operators.png)
+
+---
+
+.middle[.center[.font200[
+`select`
+]]]
+.center[![](resources/images/select.png)]
+
+
+---
+
+# Selecting columns (`select`)
+
+
+```r
+select(babynames, year)
+```
+
+```
+## # A tibble: 1,924,665 x 1
+##     year
+##    &lt;dbl&gt;
+##  1  1880
+##  2  1880
+##  3  1880
+##  4  1880
+##  5  1880
+##  6  1880
+##  7  1880
+##  8  1880
+##  9  1880
+## 10  1880
+## # … with 1,924,655 more rows
+```
+
+---
+
+# Selecting columns (`select`)
+
+
+```r
+select(babynames, -prop)
+```
+
+```
+## # A tibble: 1,924,665 x 4
+##     year sex   name          n
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;
+##  1  1880 F     Mary       7065
+##  2  1880 F     Anna       2604
+##  3  1880 F     Emma       2003
+##  4  1880 F     Elizabeth  1939
+##  5  1880 F     Minnie     1746
+##  6  1880 F     Margaret   1578
+##  7  1880 F     Ida        1472
+##  8  1880 F     Alice      1414
+##  9  1880 F     Bertha     1320
+## 10  1880 F     Sarah      1288
+## # … with 1,924,655 more rows
+```
+
+---
+
+# Selecting columns (`select`)
+
+
+```r
+select(babynames, sex, name)
+```
+
+```
+## # A tibble: 1,924,665 x 2
+##    sex   name     
+##    &lt;chr&gt; &lt;chr&gt;    
+##  1 F     Mary     
+##  2 F     Anna     
+##  3 F     Emma     
+##  4 F     Elizabeth
+##  5 F     Minnie   
+##  6 F     Margaret 
+##  7 F     Ida      
+##  8 F     Alice    
+##  9 F     Bertha   
+## 10 F     Sarah    
+## # … with 1,924,655 more rows
+```
+
+---
+
+# Selecting columns (`select`)
+
+
+```r
+select(babynames, sex:n)
+```
+
+```
+## # A tibble: 1,924,665 x 3
+##    sex   name          n
+##    &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;
+##  1 F     Mary       7065
+##  2 F     Anna       2604
+##  3 F     Emma       2003
+##  4 F     Elizabeth  1939
+##  5 F     Minnie     1746
+##  6 F     Margaret   1578
+##  7 F     Ida        1472
+##  8 F     Alice      1414
+##  9 F     Bertha     1320
+## 10 F     Sarah      1288
+## # … with 1,924,655 more rows
+```
+
+---
+
+# Selecting columns (`select`)
+
+## Special functions:
+
+- `starts_with(x)`: names that start with x
+- `ends_with(x)`: names that end with x
+- `contains(x)`: selects all variables whose name contains x
+- `matches(x)`: selects all variables whose name contains the regular expression x
+- `num_range("x", 1:5, width = 2)`: selects all variables (numerically) from x01 to x05
+- `one_of ("x", "y", "z")`: selects variables provided in a character vector
+- `everything()`: selects all variables
+
+---
+
+# Selecting columns (`select`)
+
+
+```r
+select(babynames, starts_with('n'))
+```
+
+```
+## # A tibble: 1,924,665 x 2
+##    name          n
+##    &lt;chr&gt;     &lt;int&gt;
+##  1 Mary       7065
+##  2 Anna       2604
+##  3 Emma       2003
+##  4 Elizabeth  1939
+##  5 Minnie     1746
+##  6 Margaret   1578
+##  7 Ida        1472
+##  8 Alice      1414
+##  9 Bertha     1320
+## 10 Sarah      1288
+## # … with 1,924,655 more rows
+```
+
+---
+
+.middle[.center[.font200[
+`arrange`
+]]]
+.center[![](resources/images/arrange.png)]
+
+---
+
+# Sorting rows (`arrange`)
+
+
+```r
+arrange(babynames, prop)
+```
+
+```
+## # A tibble: 1,924,665 x 5
+##     year sex   name            n       prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;int&gt;      &lt;dbl&gt;
+##  1  2007 M     Aaban           5 0.00000226
+##  2  2007 M     Aareon          5 0.00000226
+##  3  2007 M     Aaris           5 0.00000226
+##  4  2007 M     Abd             5 0.00000226
+##  5  2007 M     Abdulazeez      5 0.00000226
+##  6  2007 M     Abdulhadi       5 0.00000226
+##  7  2007 M     Abdulhamid      5 0.00000226
+##  8  2007 M     Abdulkadir      5 0.00000226
+##  9  2007 M     Abdulraheem     5 0.00000226
+## 10  2007 M     Abdulrahim      5 0.00000226
+## # … with 1,924,655 more rows
+```
+
+
+---
+
+# Sorting rows (`arrange`)
+
+
+```r
+arrange(babynames, desc(prop))
+```
+
+```
+## # A tibble: 1,924,665 x 5
+##     year sex   name        n   prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;  &lt;dbl&gt;
+##  1  1880 M     John     9655 0.0815
+##  2  1881 M     John     8769 0.0810
+##  3  1880 M     William  9532 0.0805
+##  4  1883 M     John     8894 0.0791
+##  5  1881 M     William  8524 0.0787
+##  6  1882 M     John     9557 0.0783
+##  7  1884 M     John     9388 0.0765
+##  8  1882 M     William  9298 0.0762
+##  9  1886 M     John     9026 0.0758
+## 10  1885 M     John     8756 0.0755
+## # … with 1,924,655 more rows
+```
+
+---
+
+.middle[.center[.font200[
+`mutate`
+]]]
+
+---
+
+# Transforming variables (`mutate`)
+
+
+```r
+mutate(
+  babynames,
+  total = n / prop
+)
+```
+
+```
+## # A tibble: 1,924,665 x 6
+##     year sex   name          n   prop  total
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1  1880 F     Mary       7065 0.0724 97605.
+##  2  1880 F     Anna       2604 0.0267 97605.
+##  3  1880 F     Emma       2003 0.0205 97605.
+##  4  1880 F     Elizabeth  1939 0.0199 97605.
+##  5  1880 F     Minnie     1746 0.0179 97605.
+##  6  1880 F     Margaret   1578 0.0162 97605.
+##  7  1880 F     Ida        1472 0.0151 97605.
+##  8  1880 F     Alice      1414 0.0145 97605.
+##  9  1880 F     Bertha     1320 0.0135 97605.
+## 10  1880 F     Sarah      1288 0.0132 97605.
+## # … with 1,924,655 more rows
+```
+
+
+---
+
+# Transforming variables (`mutate`)
+
+
+```r
+mutate(
+  babynames,
+  year_diff = 2018 - year,
+  months_diff = year_diff * 12
+)
+```
+
+```
+## # A tibble: 1,924,665 x 7
+##     year sex   name          n   prop year_diff months_diff
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+##  1  1880 F     Mary       7065 0.0724       138        1656
+##  2  1880 F     Anna       2604 0.0267       138        1656
+##  3  1880 F     Emma       2003 0.0205       138        1656
+##  4  1880 F     Elizabeth  1939 0.0199       138        1656
+##  5  1880 F     Minnie     1746 0.0179       138        1656
+##  6  1880 F     Margaret   1578 0.0162       138        1656
+##  7  1880 F     Ida        1472 0.0151       138        1656
+##  8  1880 F     Alice      1414 0.0145       138        1656
+##  9  1880 F     Bertha     1320 0.0135       138        1656
+## 10  1880 F     Sarah      1288 0.0132       138        1656
+## # … with 1,924,655 more rows
+```
+
+---
+
+.middle[.center[.font200[
+`summarise`
+]]]
+.center[![](resources/images/summarise.png)]
+
+---
+
+# Reducing variables (`summarise`)
+
+
+```r
+summarise(babynames, max_prop = max(prop))
+```
+
+```
+## # A tibble: 1 x 1
+##   max_prop
+##      &lt;dbl&gt;
+## 1   0.0815
+```
+
+---
+
+# Reducing variables (`summarise`)
+
+## Summary functions
+
+  - `min(x)`, `max(x)`, `quantile(x, p)`
+  
+  - `mean(x)`, `median(x)`, 
+  
+  - `sd(x)`, `var(x)`, `IQR(x)`
+  
+  - `n()`, `n_distinct(x)`
+  
+  - `sum(x &gt; 10)`, `mean(x &gt; 10)`
+---
+
+.middle[.center[.font200[
+`grouped summarise`
+]]]
+
+
+
+.center[![](resources/images/group_summarise.png)]
+
+---
+
+# Reducing variables (`summarise`)
+
+## Grouped summarise
+
+
+```r
+by_year &lt;- group_by(babynames, year)
+by_year
+```
+
+```
+## # A tibble: 1,924,665 x 5
+## # Groups:   year [138]
+##     year sex   name          n   prop
+##    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;int&gt;  &lt;dbl&gt;
+##  1  1880 F     Mary       7065 0.0724
+##  2  1880 F     Anna       2604 0.0267
+##  3  1880 F     Emma       2003 0.0205
+##  4  1880 F     Elizabeth  1939 0.0199
+##  5  1880 F     Minnie     1746 0.0179
+##  6  1880 F     Margaret   1578 0.0162
+##  7  1880 F     Ida        1472 0.0151
+##  8  1880 F     Alice      1414 0.0145
+##  9  1880 F     Bertha     1320 0.0135
+## 10  1880 F     Sarah      1288 0.0132
+## # … with 1,924,655 more rows
+```
+
+---
+
+# Reducing variables (`summarise`)
+
+## Grouped summarise
+
+
+```r
+summarise(
+  by_year,
+  max_n = max(n)
+)
+```
+
+```
+## # A tibble: 138 x 2
+##     year max_n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1  1880  9655
+##  2  1881  8769
+##  3  1882  9557
+##  4  1883  8894
+##  5  1884  9388
+##  6  1885  9128
+##  7  1886  9889
+##  8  1887  9888
+##  9  1888 11754
+## 10  1889 11648
+## # … with 128 more rows
+```
+
+---
+
+# Reducing variables (`summarise`)
+
+## Grouped summarise
+
+
+```r
+by_year_sex &lt;- group_by(babynames, year, sex)
+
+summarise(
+  by_year_sex,
+  max_n = max(n)
+)
+```
+
+```
+## # A tibble: 276 x 3
+## # Groups:   year [138]
+##     year sex   max_n
+##    &lt;dbl&gt; &lt;chr&gt; &lt;int&gt;
+##  1  1880 F      7065
+##  2  1880 M      9655
+##  3  1881 F      6919
+##  4  1881 M      8769
+##  5  1882 F      8148
+##  6  1882 M      9557
+##  7  1883 F      8012
+##  8  1883 M      8894
+##  9  1884 F      9217
+## 10  1884 M      9388
+## # … with 266 more rows
+```
+
+---
+layout: false
+class: inverse
+background-image: url(resources/images/pipe.png)
+
+# pipes
+
+---
+layout: true
+
+&lt;div class="tweaked-header" style="background-image: url(resources/images/pipe.png)"&gt;&lt;/div&gt;
+
+---
+
+class: code80
+
+# Data pipelines (`%&gt;%`)
+
+  - Often, we want to use several verbs (filter, arrange, group_by, summarise...)
+
+  - Multiple operations are difficult to read, or require to create multiple intermediate
+    objects:
+
+.pull-left[
+
+
+```r
+year_1880 &lt;- summarise(
+  group_by(
+    filter(
+      babynames, year == 1880
+    ),
+    sex
+  ),
+  max = max(n),
+  prop = max(prop)
+)
+```
+
+]
+
+.pull-right[
+
+
+```r
+year_1880 &lt;- filter(
+  babynames, year == 1880
+)
+year_1880_grouped &lt;- group_by(
+  year_1880, sex
+)
+summarised_year_1880 &lt;- summarise(
+  year_1880_grouped,
+  max = max(n),
+  prop = max(prop)
+)
+```
+
+]
+
+---
+
+# Data pipelines (`%&gt;%`)
+
+  - Alternative (cleaner and easy to read): *pipe* operator (`%&gt;%`) from `magrittr` package
+  
+  - The result of the left side is passed to the function in the right as first argument:
+  
+  `f(x, y)` is the same as `x %&gt;% f(y)`  
+  `f(x, y, z)` is the same as `x %&gt;% f(y, z)`
+
+  - In the tidyverse `%&gt;%` makes each function to be applied to the data frame resulting
+    from the previous step
+  
+  `filter(df, color == 'blue')` is the same as `df %&gt;% filter(color == 'blue')`  
+  `mutate(df, double = 2*value)` is the same as `df %&gt;% mutate(double = 2*value)`
+
+---
+class: code80
+
+# Data pipelines (`%&gt;%`)
+
+.pull-left[
+
+Nested functions
+
+
+```r
+year_1880 &lt;- summarise(
+  group_by(
+    filter(
+      babynames, year == 1880
+    ),
+    sex
+  ),
+  max = max(n),
+  prop = max(prop)
+)
+```
+
+]
+
+--
+
+.pull-right[
+
+Pipeline
+
+
+```r
+year_1880 &lt;- babynames %&gt;%
+  filter(year == 1880) %&gt;%
+  group_by(sex) %&gt;%
+  summarise(
+    max = max(n),
+    prop = max(prop)
+  )
+```
+
+]
+
+---
+
+# Applying all together
+
+How do you do to get the names with the maximum proportion for
+each year and sex?
+We also want the total n for each year and sex.
+
+--
+
+
+```r
+babynames %&gt;%
+  group_by(year, sex) %&gt;%
+  arrange(desc(prop)) %&gt;%
+  summarise(
+    prop_max = max(prop),
+    prop_total = sum(prop),
+    name = first(name),
+    n_total = sum(n),
+    n_year = first(n)
+  ) %&gt;%
+  select(
+    name, sex, year, n_year, n_total, prop_max, prop_total
+  ) %&gt;%
+  mutate(
+    calc_prop = n_year/n_total
+  )
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "solarized-light",
+"highlightLanguage": "r",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
