@@ -761,4 +761,186 @@ babynames %>%
   )
 ```
 
+---
+layout: false
+
+
+# Linear Models
+
+## Regression
+
+Y ~ X~1~ + ... + X~n~
+
+`lm`:
+
+  - formula: Y ~ X where X and Y are variables in the data frame
+  - data: data frame
+
+```{r regresion}
+iris_petal_mod <- lm(Petal.Length ~ Petal.Width, data = iris)
+```
+
+---
+
+# Linear Models
+
+## Regression
+
+```{r regresion_summary}
+summary(iris_petal_mod)
+```
+
+---
+
+# Linear Models
+
+## Regression
+
+```{r regresion_modelplot}
+plot(iris_petal_mod)
+```
+
+---
+
+# Linear Models
+
+## Regression
+
+```{r regresion_ggplot, fig.height=3, fig.width=6}
+ggplot(iris, aes(x = Petal.Width, y = Petal.Length)) +
+  geom_point(size = 4, alpha = 0.5) +
+  geom_smooth(method = 'lm')
+```
+
+---
+
+# Linear Models
+
+## ANOVA
+
+Y ~ X~c1~ + ... + X~cn~
+
+---
+
+# Linear Models
+
+## ANOVA
+
+```{r anova}
+iris_petal_anova <- lm(Petal.Length ~ Species, data = iris)
+```
+
+---
+
+# Linear Models
+
+## ANOVA
+
+```{r anova_summary}
+summary(iris_petal_anova)
+```
+
+---
+
+# Linear Models
+
+## ANOVA
+
+```{r anova_anova}
+anova(iris_petal_anova)
+```
+
+---
+
+# Linear Models
+
+## ANOVA
+
+```{r anova_modelplot}
+plot(iris_petal_anova)
+```
+
+---
+
+# Linear Models
+
+## ANOVA
+
+```{r anova_ggplot, fig.height=3, fig.width=6}
+ggplot(iris, aes(x = Species, y = Petal.Length)) +
+  geom_boxplot(fill = 'darkgrey')
+```
+
+---
+
+# Linear Models
+
+## ANCOVA
+
+Y ~ X~c~ + X
+
+---
+
+# Linear Models
+
+## ANCOVA
+
+```{r ancova}
+iris_petal_ancova <- lm(Petal.Length ~ Petal.Width * Species, data = iris)
+```
+
+---
+
+# Linear Models
+
+## ANCOVA
+
+```{r ancova_summary}
+summary(iris_petal_ancova)
+```
+
+---
+
+# Linear Models
+
+## ANCOVA
+
+```{r ancova_anova}
+anova(iris_petal_ancova)
+```
+
+---
+
+# Linear Models
+
+## ANCOVA
+
+```{r ancova_modelplot}
+plot(iris_petal_ancova)
+```
+
+---
+
+# Linear Models
+
+## ANCOVA
+
+```{r ancova_ggplot, fig.height=3, fig.width=6}
+ggplot(iris, aes(x = Petal.Width, y = Petal.Length,
+                      color = Species)) +
+  geom_point(size = 4, alpha = 0.5)  +
+  geom_smooth(method = 'lm')
+```
+
+---
+
+# Linear Models
+
+## plotting interactions
+
+```{r interactions}
+# install.packages('sjPlot')
+library(sjPlot)
+plot_model(iris_petal_ancova, type = 'int')
+```
 
