@@ -763,7 +763,9 @@ babynames %>%
 
 ---
 layout: false
+inverse: true
 
+---
 
 # Linear Models
 
@@ -938,7 +940,7 @@ ggplot(iris, aes(x = Petal.Width, y = Petal.Length,
 
 ## plotting interactions
 
-```{r interactions}
+```{r interactions, fig.height=3, fig.width=6}
 # install.packages('sjPlot')
 library(sjPlot)
 plot_model(iris_petal_ancova, type = 'int')

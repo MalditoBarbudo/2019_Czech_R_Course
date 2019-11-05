@@ -1341,7 +1341,9 @@ babynames %&gt;%
 
 ---
 layout: false
+inverse: true
 
+---
 
 # Linear Models
 
@@ -1536,7 +1538,7 @@ Y ~ X~c~ + X
 
 
 ```r
-iris_petal_ancova &lt;- lm(Petal.Length ~ Species * Petal.Width, data = iris)
+iris_petal_ancova &lt;- lm(Petal.Length ~ Petal.Width * Species, data = iris)
 ```
 
 ---
@@ -1553,7 +1555,7 @@ summary(iris_petal_ancova)
 ```
 ## 
 ## Call:
-## lm(formula = Petal.Length ~ Species * Petal.Width, data = iris)
+## lm(formula = Petal.Length ~ Petal.Width * Species, data = iris)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
@@ -1562,11 +1564,11 @@ summary(iris_petal_ancova)
 ## Coefficients:
 ##                               Estimate Std. Error t value Pr(&gt;|t|)    
 ## (Intercept)                     1.3276     0.1309  10.139  &lt; 2e-16 ***
+## Petal.Width                     0.5465     0.4900   1.115   0.2666    
 ## Speciesversicolor               0.4537     0.3737   1.214   0.2267    
 ## Speciesvirginica                2.9131     0.4060   7.175 3.53e-11 ***
-## Petal.Width                     0.5465     0.4900   1.115   0.2666    
-## Speciesversicolor:Petal.Width   1.3228     0.5552   2.382   0.0185 *  
-## Speciesvirginica:Petal.Width    0.1008     0.5248   0.192   0.8480    
+## Petal.Width:Speciesversicolor   1.3228     0.5552   2.382   0.0185 *  
+## Petal.Width:Speciesvirginica    0.1008     0.5248   0.192   0.8480    
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -1591,10 +1593,10 @@ anova(iris_petal_ancova)
 ## 
 ## Response: Petal.Length
 ##                      Df Sum Sq Mean Sq   F value    Pr(&gt;F)    
-## Species               2 437.10 218.551 1672.6184 &lt; 2.2e-16 ***
-## Petal.Width           1   6.39   6.389   48.8975 9.338e-11 ***
-## Species:Petal.Width   2   2.02   1.009    7.7213 0.0006525 ***
-## Residuals           144  18.82   0.131                        
+## Petal.Width           1 430.48  430.48 3294.5561 &lt; 2.2e-16 ***
+## Species               2  13.01    6.51   49.7891 &lt; 2.2e-16 ***
+## Petal.Width:Species   2   2.02    1.01    7.7213 0.0006525 ***
+## Residuals           144  18.82    0.13                        
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
@@ -1627,6 +1629,21 @@ ggplot(iris, aes(x = Petal.Width, y = Petal.Length,
 ```
 
 ![](index_files/figure-html/ancova_ggplot-1.png)&lt;!-- --&gt;
+
+---
+
+# Linear Models
+
+## plotting interactions
+
+
+```r
+# install.packages('sjPlot')
+library(sjPlot)
+plot_model(iris_petal_ancova, type = 'int')
+```
+
+![](index_files/figure-html/interactions-1.png)&lt;!-- --&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
